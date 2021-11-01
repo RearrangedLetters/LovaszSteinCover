@@ -3,6 +3,7 @@
 % Use this to only show the final state of the frames
 %\documentclass[handout,10pt]{beamer}
 
+\input{embed_video.tex}
 
 \usetheme[progressbar=frametitle]{metropolis}
 \usepackage{appendixnumberbeamer}
@@ -17,6 +18,7 @@
 % \usepackage{amssymb}
 \usepackage{gensymb}
 \usepackage{xspace}
+\usepackage{graphicx}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
 \newcounter{TheoremCounter}
@@ -33,6 +35,12 @@
 \begin{document}
 
 \maketitle
+
+\begin{frame}[fragile]{Motivation}
+    \centering{
+        \embedvideo*{\includegraphics[height=.7\textheight]{Animations/SquareToCirclePreview}}{Animations/SquareToCircle.mp4}
+    }
+\end{frame}
 
 
 \end{document}
