@@ -1,1 +1,1 @@
-# LovaszSteinCover
+# Lovasz Stein Graph Covering
