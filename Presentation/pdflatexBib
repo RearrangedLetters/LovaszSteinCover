@@ -1,4 +1,4 @@
 pdflatex -interaction nonstopmode -output-directory=out main
-bibtex main
+bibtex out/main
 pdflatex -interaction nonstopmode -output-directory=out main
 pdflatex -interaction nonstopmode -output-directory=out main
