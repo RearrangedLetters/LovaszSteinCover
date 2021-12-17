@@ -21,6 +21,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+\newcommand\restr[2]{\ensuremath{\left.#1\right|_{#2}}}
 
 \usepackage{url}
 
@@ -46,24 +47,71 @@
 %    }
 %\end{frame}
 
+
+\begin{frame}[fragile]{Motivation}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Lovász-Stein-Theorem}
+    \metroset{block=fill}
+    \begin{block}{Lovász-Stein Theorem (1974)}
+        If each member of $ \mathcal{F} $ has at most $ a $ elements,
+        and each point belongs to at least $ v $ of the sets in $ \mathcal{F} $, then
+        \[
+            Cov(\mathcal{F}) \leq \frac{|F|}{v}(1 + \ln(a)).
+        \]
+    \end{block}
+\end{frame}
+
 \section{Hashing}
 
 \begin{frame}[fragile]{Hash Functions Motivation}
-    How fast can $ x \in M $ be decided by an algorithm?
+    How fast can $ x \stackrel{?}{\in} M $ be decided by an algorithm? \pause
     \\
     \vspace{1em}
     Some ideas
     \begin{itemize}
-        \item[$ (1) $] For each $ m \in M $ check $ x = m $.
+        \item[$ (1) $] For each $ m \in M $ check $ x \stackrel{?}{=} m $.\pause
         \item[$ (2) $] If $ M $ is sortable, all elements can be stored in a binary tree of height $ \log (|M|)$.
-        Traverse the tree, checking $ x = m $ for all visited elements $ m $.
+        Traverse the tree, checking $ x \stackrel{?}{=} m $ for all visited elements $ m $.\pause
     \end{itemize}
-    We get a linear-time algorithm for $ (1) $ and a logarithmic-time algorithm for $ (2) $.
+    We get a linear-time algorithm for $ (1) $ and a logarithmic-time algorithm for $ (2) $.\pause
     \\
     \vfill
     \textbf{Question}: How close can we get to constant-time?
 \end{frame}
 
+
+\begin{frame}[fragile]{Hash Functions}
+    \textbf{Idea}:
+    \vspace{-.75em}
+    \begin{itemize}
+        \item Use a function $ h : M \to [n] $, \pause
+        \item that can be evaluated in $ \mathcal{O}(1) $ time,\pause
+        \item to map elements of $ M $ to positions $ 1, \dots, n $. \pause
+    \end{itemize}
+    \\
+    \vfill
+
+    \textbf{Example} ($ h(x) = x \text{ mod } 5 $):
+    \begin{columns}[T]
+    \begin{column}{.3\textwidth}
+        \includegraphics[height=.5\textheight]{Images/Hashing/Hashing_01}
+    \end{column}
+
+    \begin{column}{.5\textwidth}
+        %\begin{itemize}
+        %    \item What happens if two items are mapped to the same position?
+        %    \item Time-complexity?
+        %\end{itemize}
+        %\vspace{3em}
+        %$ \to $ Hashing with linear probing on sufficiently large arrays results in \textit{expected constant time}.
+    \end{column}
+    \end{columns}
+
+    %\textbf{Question}: Can we get constant-time?
+\end{frame}
 
 \begin{frame}[fragile]{Hash Functions}
     \textbf{Idea}:
@@ -79,21 +127,42 @@
     \textbf{Example} ($ h(x) = x \text{ mod } 5 $):
     \begin{columns}[T]
     \begin{column}{.3\textwidth}
-        \includegraphics[height=.5\textheight]{Images/HashingExample}
+        \includegraphics[height=.5\textheight]{Images/Hashing/Hashing_02}
     \end{column}
 
     \begin{column}{.5\textwidth}
         \begin{itemize}
-            \item What happens if two items are mapped to the same position?
-            \item Time-complexity?
+            \item What happens if two items get mapped to the same position? \pause
+            \item Time-complexity? \pause
         \end{itemize}
         \vspace{3em}
-        $ \to $ Hashing with linear probing on sufficiently large arrays results in \textit{expected constant time}.
+        $ \to $ Hashing with linear probing on sufficiently large arrays results in \textit{expected constant time}. \pause
     \end{column}
     \end{columns}
 
-    \textbf{Question}: Can we get constant-time?
+    \textbf{Question}: Can we get to constant-time?
 \end{frame}
+
+
+\begin{frame}[fragile]{Perfect Hash Functions}
+    Let $ \mathcal{F} $ be a family of $ N $-many functions $ f : X \to Y $, where
+    $ |X| = n $, $ |Y| = m $.
+    
+    \textbf{Definition.} The family $ \mathcal{F} $ is a perfect hashing family (PHF), if
+    $ \forall C \subseteq X, |C| = w: \exists f \in \mathcal{F}: \restr{f}{C} $ is injective.
+
+    \vfill
+
+    \metroset{block=fill}
+    \begin{block}{Theorem 2 (2011)}
+        There exists a perfect hashing family with
+        \[
+            N \leq \frac{n^w}{w!{n \choose w}}\bigg(1 + \ln{m \choose w}\bigg).
+        \]
+    \end{block}
+\end{frame}
+
+
 
 
 \begin{frame}[fragile]{References}
