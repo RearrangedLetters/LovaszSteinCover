@@ -3,22 +3,23 @@
 % Use this to only show the final state of the frames
 %\documentclass[handout,10pt]{beamer}
 
-\input{embed_video.tex}
+% \input{embed_video.tex}
 
 \usetheme[progressbar=frametitle]{metropolis}
 \usepackage{appendixnumberbeamer}
 
 \usepackage{booktabs}
-\usepackage[scale=2]{ccicons}
+%\usepackage[scale=2]{ccicons}
 
 \usepackage{pgfplots}
 \usepgfplotslibrary{dateplot}
 
-\usepackage[ruled,vlined]{algorithm2e}
-% \usepackage{amssymb}
+%\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{amssymb}
 \usepackage{gensymb}
 \usepackage{xspace}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
 \newcounter{TheoremCounter}
@@ -36,11 +37,67 @@
 
 \maketitle
 
-\begin{frame}[fragile]{Motivation}
-    \centering{
-        \embedvideo*{\includegraphics[height=.7\textheight]{Animations/SquareToCirclePreview}}{Animations/SquareToCircle.mp4}
-    }
+\section{Lovász-Stein Theorem}
+%\begin{frame}[fragile]{Motivation}
+%    \centering{
+%        \embedvideo*{\includegraphics[height=.7\textheight]{Animations/SquareToCirclePreview}}{Animations/SquareToCircle.mp4}
+%    }
+%\end{frame}
+
+\section{Hashing}
+
+\begin{frame}[fragile]{Hash Functions Motivation}
+    How fast can $ x \in M $ be decided by an algorithm?
+    \\
+    \vspace{1em}
+    Some ideas
+    \begin{itemize}
+        \item[$ (1) $] For each $ m \in M $ check $ x = m $.
+        \item[$ (2) $] If $ M $ is sortable, all elements can be stored in a binary tree of height $ \log (|M|)$.
+        Traverse the tree, checking $ x = m $ for all visited elements $ m $.
+    \end{itemize}
+    We get a linear-time algorithm for $ (1) $ and a logarithmic-time algorithm for $ (2) $.
+    \\
+    \vfill
+    \textbf{Question}: How close can we get to constant-time?
 \end{frame}
 
+
+\begin{frame}[fragile]{Hash Functions}
+    \textbf{Idea}:
+    \vspace{-.75em}
+    \begin{itemize}
+        \item Use a function $ h : M \to [n] $,
+        \item that can be evaluated in $ \mathcal{O}(1) $ time,
+        \item to map elements of $ M $ to positions $ 1, \dots, n $.
+    \end{itemize}
+    \\
+    \vfill
+
+    \textbf{Example} ($ h(x) = x \text{ mod } 5 $):
+    \begin{columns}[T]
+    \begin{column}{.3\textwidth}
+        \includegraphics[height=.5\textheight]{Images/HashingExample}
+    \end{column}
+
+    \begin{column}{.5\textwidth}
+        \begin{itemize}
+            \item What happens if two items are mapped to the same position?
+            \item Time-complexity?
+        \end{itemize}
+        \vspace{3em}
+        $ \to $ Hashing with linear probing on sufficiently large arrays results in \textit{expected constant time}.
+    \end{column}
+    \end{columns}
+
+    \textbf{Question}: Can we get constant-time?
+\end{frame}
+
+
+\begin{frame}[fragile]{References}
+    \nocite{*}
+    \bibliographystyle{abbrv}
+    \bibliography{bibliography}
+\end{frame}
 
 \end{document}

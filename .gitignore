@@ -129,10 +129,12 @@ dmypy.json
 .pyre/
 
 /out/
-/Presentation/Animations/
+/Presentation/Animations/Images
 *.png
 *.mp4
 *.xml
 
 .idea
 /Animations/media/
+/Animations/Images/
+/Presentation/out/
