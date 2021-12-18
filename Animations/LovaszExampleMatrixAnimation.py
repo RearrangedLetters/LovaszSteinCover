@@ -1,5 +1,12 @@
 from manim import *
 
+config.background_color = WHITE
+config.transparent = True
+config.pixel_width = 1920
+config.frame_width = 16
+config.pixel_height = 1440
+config.frame_height = 12
+
 M_example = [[1, 0, 0, 0, 1, 0, 0, 0, 0, 0],  # 01
              [1, 0, 0, 0, 1, 0, 0, 0, 0, 0],  # 02
              [1, 0, 0, 0, 1, 0, 0, 0, 0, 0],  # 03
@@ -28,6 +35,10 @@ Column_Lables = Matrix(M_columns, left_bracket="|", right_bracket="|")
 Column_Lables.set_color(GREY_D)
 Column_Lables.get_brackets()[0].set_color(WHITE)
 Column_Lables.get_brackets()[1].set_color(WHITE)
+Column_Lables.get_brackets()[0].set_fill(WHITE, opacity=0)
+Column_Lables.get_brackets()[1].set_fill(WHITE, opacity=0)
+Column_Lables.get_brackets()[0].set_stroke(PINK, opacity=0)
+Column_Lables.get_brackets()[1].set_stroke(PINK, opacity=0)
 
 M_rows = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10],
           [11], [12], [13], [14], [15], [16], [17], [18], [19], [20], [21]
@@ -37,6 +48,10 @@ Row_Labels = Matrix(M_rows, left_bracket="|", right_bracket="|")
 Row_Labels.set_color(GREY_D)
 Row_Labels.get_brackets()[0].set_color(WHITE)
 Row_Labels.get_brackets()[1].set_color(WHITE)
+Row_Labels.get_brackets()[0].set_fill(WHITE, opacity=0)
+Row_Labels.get_brackets()[1].set_fill(WHITE, opacity=0)
+Row_Labels.get_brackets()[0].set_stroke(PINK, opacity=0)
+Row_Labels.get_brackets()[1].set_stroke(PINK, opacity=0)
 
 M_simplified_estr = [[1, "", "", "", 1, "", "", "", "", ""],  # 01
                      [1, "", "", "", 1, "", "", "", "", ""],  # 02
@@ -87,12 +102,6 @@ M_simplified = [[1, 0, 0, 0, 1, 0, 0, 0, 0, 0],  # 01
 M = Matrix(M_simplified, left_bracket="|", right_bracket="|", v_buff=.8)
 M.set_color(BLACK)
 
-config.background_color = WHITE
-config.pixel_width = 1920
-config.frame_width = 16
-config.pixel_height = 1440
-config.frame_height = 12
-
 scene_scale = .5
 
 
@@ -101,45 +110,66 @@ def white_zeros(A):
         for j in range(len(M_example[0])):
             if M_example[i][j] == 0:
                 A.get_columns()[j][i].set_color(WHITE)
+                A.get_columns()[j][i].set_fill(WHITE, opacity=0)
 
 
 class ExampleMatrix(Scene):
     def construct(self):
         white_zeros(M)
-        M.add(SurroundingRectangle(M.get_columns()[4],
-                                   color=ORANGE,
-                                   stroke_opacity=0,
-                                   fill_opacity=.4,
-                                   corner_radius=.1,
-                                   buff=.1))
-
-        for i in [0, 1, 2, 4, 6, 8, 11]:
-            Row_Labels.add(SurroundingRectangle(Row_Labels.get_rows()[i],
-                                                color=DARK_BLUE,
-                                                stroke_opacity=0,
-                                                fill_opacity=.4,
-                                                corner_radius=.1,
-                                                buff=.1))
-
-        Column_Lables.add(SurroundingRectangle(Column_Lables.get_columns()[4],
-                                               color=DARK_BLUE,
-                                               stroke_opacity=0,
-                                               fill_opacity=.4,
-                                               corner_radius=.1,
-                                               buff=.1))
+        covering = [4, 5, 9, 2, 0, 3, 7]
+        k = 7       # include the first k edges in the render
         M.scale(scene_scale)
-        Column_Lables.scale(scene_scale)
         Row_Labels.scale(scene_scale)
-
+        Column_Lables.scale(scene_scale)
         Row_Labels.to_corner(LEFT + DOWN)
         M.next_to(Row_Labels, RIGHT)
         Column_Lables.next_to(M, UP)
-
-        graph_image = ImageMobject("Images/Matheson/Matheson_09.png")
+        for c in covering[:k]:
+            mark_row_label(get_covered_rows(c))
+            mark_column_label(c)
+            self.add(Column_Lables)
+            self.add(Row_Labels)
+        mark_column(covering[k - 1])
+        mark_column(covering[k - 2])
+        mark_column(covering[k - 3])
+        graph_image = ImageMobject("../Presentation/Images/Matheson/Matheson_16.png")
         graph_image.scale(.725)
-        graph_image.to_edge(RIGHT, buff=.5)
-
+        graph_image.to_edge(RIGHT, buff=.7)
         self.add(graph_image)
         self.add(M)
-        self.add(Column_Lables)
-        self.add(Row_Labels)
+
+
+def get_covered_rows(column):
+    marked = list()
+    for i in range(len(M_example)):
+        if M_example[i][column] == 1:
+            marked.append(i)
+    return marked
+
+
+def mark_row_label(rows):
+    for i in rows:
+        Row_Labels.add(SurroundingRectangle(Row_Labels.get_rows()[i],
+                                            color=DARK_BLUE,
+                                            stroke_opacity=0,
+                                            fill_opacity=.4,
+                                            corner_radius=.1,
+                                            buff=.1))
+
+
+def mark_column_label(i):
+    Column_Lables.add(SurroundingRectangle(Column_Lables.get_columns()[i],
+                                           color=DARK_BLUE,
+                                           stroke_opacity=0,
+                                           fill_opacity=.4,
+                                           corner_radius=.1,
+                                           buff=.1))
+
+
+def mark_column(i):
+    M.add(SurroundingRectangle(M.get_columns()[i],
+                               color=DARK_BLUE,
+                               stroke_opacity=0,
+                               fill_opacity=.4,
+                               corner_radius=.1,
+                               buff=.1))
