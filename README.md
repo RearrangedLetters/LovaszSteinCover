@@ -15,8 +15,8 @@ To recreate the images rendered with manim, execute run_manim in the folder Anim
 
 ## Project Overview
 This repository accompanies a presentation on the Lovász-Stein theorem and an application.
-The presented proofs of said theorems are based on the book Extremal Combinatorics: With Applications in Computer Science
-by Stasys Jukna.
+The presented proofs of said theorems are based on the book
+'Extremal Combinatorics: With Applications in Computer Science' by Stasys Jukna.
 The presented application has been adapted from the paper 
 'The Stein-Lovasz Theorem and Its Applications to Some Combinatorial arrays' by Deng et al.
 
