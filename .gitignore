@@ -138,3 +138,7 @@ dmypy.json
 /Animations/media/
 /Animations/Images/
 /Presentation/out/
+!/Presentation/Images/Bubblesort/
+!/Presentation/Images/Hashing/
+!/Presentation/Images/LSAExample/
+!/Presentation/Images/Matheson/
