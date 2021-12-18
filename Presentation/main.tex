@@ -204,6 +204,24 @@
 \end{frame}
 
 
+\begin{frame}[fragile]{Memos}
+    \textbf{Definitions:}
+    \begin{itemize}
+        \item $ K $ is the size of the covering found by LSA \pause
+        \item $ K_i $ is the number of edges found in step $ i $ \pause
+        \item $ a $ is an upper bound for number of $ 1 $'s in a column \pause
+        \item $ v $ is a lower bound for the number of $ 1 $'s in a row \pause
+    \end{itemize}
+
+    \textbf{Lemmas:}
+    \begin{itemize}
+        \item[(1)] $ Cov(\mathcal{G}) \leq \sum_{n=1}^a K_i$ \pause
+        \item[(2)] $ K_i = \frac{k_{i+1} + k_i}{i} $ \pause
+        \item[(3)] $ k_i \leq \frac{(i-1)M}{v}$
+    \end{itemize}
+\end{frame}
+
+
 
 \begin{frame}[fragile]{Lovász-Stein-Theorem}
     \metroset{block=fill}
@@ -297,7 +315,7 @@
 
 
 \begin{frame}[fragile]{Perfect Hash Functions}
-    Let $ \mathcal{F} $ be a family of $ N $-many functions $ f : X \to Y $, where
+    Let $ \mathcal{F} $ be a family of $ M $-many functions $ f : X \to Y $, where
     $ |X| = n $, $ |Y| = m $.
     
     \textbf{Definition.} The family $ \mathcal{F} $ is a perfect hashing family (PHF), if
@@ -309,7 +327,7 @@
     \begin{block}{Theorem 2 (2011)}
         There exists a perfect hashing family with
         \[
-            N \leq \frac{n^w}{w!{n \choose w}}\bigg(1 + \ln{m \choose w}\bigg).
+            M \leq \frac{n^w}{w!{n \choose w}}\bigg(1 + \ln{m \choose w}\bigg).
         \]
     \end{block}
 \end{frame}
