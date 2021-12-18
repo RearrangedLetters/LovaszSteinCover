@@ -6,6 +6,8 @@ For creating the animations used in the presentation, please make sure
 Manim Community and the necessary dependencies are installed.
 To achieve this, check the section for your operating system in the
 [Manim Installation Guide](docs.manim.community/en/stable/installation.html).
+To compile the presentation you must have LaTex installed,
+for simplicity a full installation is recommended.
 
 All scripts are written to be run in a Linux terminal.
 If you're working on a different operating system there might be additional steps.
@@ -25,3 +27,7 @@ presentation, the repository comes with an implementation of the Lovász-Stein a
 While this algorithm is based on the presented algorithm, some adjustments have been made to achieve a more
 reasonable time complexity.
 There are other, reasonably simple, changes one could make to further improve the time complexity.
+
+To include videos (for example, created using manim) Presentation/embed_video.tex can be used.
+The code in this file originally appeared in an answer to
+https://tex.stackexchange.com/questions/516029/media9-is-becoming-obsolete-dec-2020-any-alternatives-for-embedding-video-audio
