@@ -24,6 +24,7 @@
 \newcommand\restr[2]{\ensuremath{\left.#1\right|_{#2}}}
 
 \usepackage{url}
+\usepackage{xcolor}
 
 \newcounter{TheoremCounter}
 \resetcounteronoverlays{algocf}
@@ -205,7 +206,7 @@
 
 
 \begin{frame}[fragile]{Memos}
-    \textbf{Definitions:}
+    \textbf{Definitions:} \pause
     \begin{itemize}
         \item $ K $ is the size of the covering found by LSA \pause
         \item $ K_i $ is the number of edges found in step $ i $ \pause
@@ -252,6 +253,7 @@
     \textbf{Question}: How close can we get to constant-time?
 \end{frame}
 
+\definecolor{bggray}{HTML}{fafafa}
 
 \begin{frame}[fragile]{Hash Functions}
     \textbf{Idea}:
@@ -271,16 +273,17 @@
     \end{column}
 
     \begin{column}{.5\textwidth}
-        %\begin{itemize}
-        %    \item What happens if two items are mapped to the same position?
-        %    \item Time-complexity?
-        %\end{itemize}
-        %\vspace{3em}
-        %$ \to $ Hashing with linear probing on sufficiently large arrays results in \textit{expected constant time}.
+        \begin{itemize}
+            \item[] \semitransp{\textcolor{bggray}{What happens if two items are mapped to the same position?}}
+            \item[] \textcolor{bggray}{Time-complexity?}
+        \end{itemize}
+        \vspace{3em}
+        \textcolor{bggray}{$ \to $ Hashing with linear probing on sufficiently large arrays results in
+        \textit{expected constant time}.}
     \end{column}
     \end{columns}
 
-    %\textbf{Question}: Can we get constant-time?
+    \textcolor{bggray}{\textbf{Question}: Can we get constant-time?}
 \end{frame}
 
 \begin{frame}[fragile]{Hash Functions}
@@ -306,7 +309,8 @@
             \item Time-complexity? \pause
         \end{itemize}
         \vspace{3em}
-        $ \to $ Hashing with linear probing on sufficiently large arrays results in \textit{expected constant time}. \pause
+        $ \to $ Hashing with linear probing on sufficiently large arrays results in
+        \textit{expected constant time}. \pause
     \end{column}
     \end{columns}
 
@@ -316,10 +320,10 @@
 
 \begin{frame}[fragile]{Perfect Hash Functions}
     Let $ \mathcal{F} $ be a family of $ M $-many functions $ f : X \to Y $, where
-    $ |X| = n $, $ |Y| = m $.
+    $ |X| = n $, $ |Y| = m $. \pause
     
     \textbf{Definition.} The family $ \mathcal{F} $ is a perfect hashing family (PHF), if
-    $ \forall C \subseteq X, |C| = w: \exists f \in \mathcal{F}: \restr{f}{C} $ is injective.
+    $ \forall C \subseteq X, |C| = w: \exists f \in \mathcal{F}: \restr{f}{C} $ is injective. \pause
 
     \vfill
 
@@ -332,6 +336,19 @@
     \end{block}
 \end{frame}
 
+
+\begin{frame}[fragile]{Thank You!}
+    \begin{center}
+        \large And that's a good place to stop.
+        \\
+        \vspace*{1em}
+        \Large Questions?
+    \end{center}
+\end{frame}
+
+
+\appendix
+\backupbegin
 
 
 \begin{frame}[allowframebreaks]{References}
